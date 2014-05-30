@@ -1,34 +1,17 @@
 class Order < ActiveRecord::Base
-	validates_presence_of(:name_surname)
-  validates_presence_of(:country)
-  validates_presence_of(:street)
-  validates_presence_of(:payment_method)
 
-	has_many :merchandise
+	has_many :line_items, dependent: :destroy
 
-  rails_admin do
-    nestable_list true
-    list do
-      field :name_surname
-      field :country
-      field :street
-      field :total_price
-    end
+	PAYMENT_TYPES = [ "Check", "Credit card", "Purchase order" ]
 
-    edit do
-        field :name_surname
-        field :country
-        field :merchandise
-        field :street
-        field :delivery
-        field :notes
-      end
-  end
+	validates :name, :address, :email, presence: true
+	validates :pay_type, inclusion: PAYMENT_TYPES
 
-  def payment_method_enum
-  	['Card', 'Web-pey', 'On delivery']
-  end	
-  def delivery_enum
-    ['Afoot', 'Car', 'Plane', 'Ship', 'Other']
-  end
+	def add_line_items_from_cart(cart)
+		cart.line_items.each do |item|
+			item.cart_id = nil
+			line_items << item
+		end
+	end
+
 end

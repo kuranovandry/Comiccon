@@ -25,16 +25,11 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+    # With an audit adapter, you can add:
+    history_index
+    history_show
     nestable
   end
-
-  config.navigation_static_label = "My Links"
-  config.navigation_static_links = {
-    'Calendar' => '/calendar'
-  }
 
   RailsAdmin.config do |config|
   config.authenticate_with do
@@ -42,11 +37,5 @@ RailsAdmin.config do |config|
   end
     config.current_user_method &:current_user
   end
-
-  # RailsAdmin.config do |config|
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :admin
-  # end
-  #   config.current_user_method &:current_admin
-  # end
+  
 end

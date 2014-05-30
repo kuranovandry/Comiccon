@@ -1,0 +1,13 @@
+<h3>
+	Order of Pragmatic Store sent
+</h3>
+<p>
+	This message is to inform you that we have sent your recent order:
+</p>
+<table>
+	<tr>
+		<th colspan="2">sum</th>
+		<th>description</th>
+	</tr>
+<%= render @order.line_items %>
+</table>

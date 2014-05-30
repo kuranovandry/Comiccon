@@ -1,0 +1,19 @@
+<h1>Your Pragmatic Cart</h1>
+<table>
+	<thead>
+		<tr>
+			<th colspan="2" align="left">quantity</th>
+			<th align="left">title</th>
+			<th align="right">sum</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render(cart.line_items) %>
+		<tr>
+			<td colspan="3" align="right">Total:</td>
+			<td align="right"><%= number_to_currency(cart.total_price) %></td>
+		</tr>
+	<tbody>
+</table>
+<%= button_to 'Empty cart', @cart, method: :delete, confirm: 'Are you sure?' %>
+<%= button_to 'Checkout', new_order_path, method: :get %> 

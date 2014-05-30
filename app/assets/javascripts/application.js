@@ -18,6 +18,11 @@
 //= require_tree .
 //= require fullcalendar_engine/application
 
+$(document).ready(function(){
+      $('body').on('click', '.close', function(){ 
+        $('.alert-success').hide();
+      });
+  });
 function showInstitution(obj){
    if (obj.options[obj.selectedIndex].text == "Institution"){
     $('.institution').fadeIn(1000);
