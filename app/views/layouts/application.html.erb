@@ -1,31 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Comiccon</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= content_for?(:title) ? yield(:title) : "Comiccon" %></title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <nav class="navbar-inner">
-    <div class="container">
-
-    <%= render 'layouts/navigation' %>
-
+  <div class="container">
+    <%= render 'layouts/header' %>
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <div class="alert-box <%= key %> radius"><%= value %></div>
+      <% end %>
     </div>
-  </nav>
-</header>
-  <ul class="form">
-    <% if notice %>
-    	<p class="alert alert-success"><%= notice %></p>
-  	<% end %>
-
-  	<% if alert %>
-  	  <p class="alert alert-danger"><%= alert %></p>
-  	<% end %>
-  </ul>
-<%= yield %>
-
+    <div>
+        <%= yield %>
+    </div>
+  </div>
+<%= javascript_include_tag "application" %>
 </body>
 </html>

@@ -1,62 +1,21 @@
-<html>
-<head>
-  <title>Comic-con</title>
-  <%= stylesheet_link_tag    "home" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= csrf_meta_tag %>
-  <link rel="shortcut icon" type="image/x-icon" href="/images/icons/reportm.png">
-</head>
-  <body>
-  <script type="text/javascript">
-    $(document).ready(function(){
-    $('#fade').cycle();
-    });
-  </script>
-    <div id="fade">
-      <img src="/images/b1.jpg" class="theme"/>
-      <img src="/images/b2.jpg" class="theme"/>
-      <img src="/images/b3.jpg" class="theme"/>
-      <img src="/images/b4.jpg" class="theme"/>
-      <img src="/images/b5.jpg" class="theme"/>
-      <img src="/images/b6.jpg" class="theme"/>
-      <img src="/images/b7.jpg" class="theme"/>
-      <img src="/images/b8.jpg" class="theme"/>
-    </div>
-    <div id="bg1">
-      <div id="login-box">
-        <table cellpadding="10" cellspacing="0" width="100%" height="100">
-          <tr>
-            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name) ) do |f| %>
-                <td align="left" valign="bottom" class="tw" style="padding:10px 0 0 20px">
-                  <%= f.label :email %>
-                </td>
-                <td align="left" valign="bottom" class="tw" style="padding:10px 10px 0 20px">
-                  <%= f.label :password %>
-                </td>
-                <td align="center" valign="middle" rowspan="3" width="90" class="lb pad10">
-                    <%= f.submit 'Go', :class => "white-button"%>
-                </td>
-              </tr>
-              <tr>
-                <td align="left" valign="top" style="padding:10px 0 0 20px">
-                  <%= f.email_field :email, :autofocus => true,:class=> "tfuw",:placeholder => "Enter your email" %>
-                </td>
+<div class="row">
+  <div class="small-9 small-centered medium-6 medium-centered large-5 large-centered columns">
+    <h2>Sign in</h2>
 
-                <td align="left" valign="top" style="padding:10px 10px 0 20px">
-                  <%= f.password_field :password,:class=> "tfup", :placeholder => "Enter your password" %>
-                </td>
-              </tr>
-              <tr>
-                <td class="white-text">
-                  <% if devise_mapping.rememberable? -%>
-                    <div><%= f.check_box :remember_me%>  Remember me?</div>
-                  <% end -%>
-                </td>
-              </tr>  
-            <% end %>
-        </table>
-      </div>
-    </div>
-  </body>
-</html>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true %></div>
+
+      <div><%= f.label :password %><br />
+      <%= f.password_field :password %></div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+      <% end -%>
+
+      <div><%= f.submit "Sign in", class: "button small" %></div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

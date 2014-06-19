@@ -1,0 +1,7 @@
+%li.comment
+  %h5.comment-author= comment.user.full_name
+  .comment-rating= "Rate: #{comment.rating}/#{Comment::RATING_VALUES.last}"
+  %p.text-justify.comment-content= comment.content
+  .comment-date
+    = "Submitted on #{comment.created_at}"
+  %hr.comment-line-split

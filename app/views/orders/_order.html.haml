@@ -1,0 +1,27 @@
+%li.order
+  .panel
+    .row
+      .medium-3.large-4.columns
+        .order-shipping-address
+          = order.shipping_address
+        .order-date
+          = order.created_at.to_date
+        .order-total-amount
+          %span.order-total-amount-label Total amount:
+          %span.order-total-amount-value= number_to_currency(order.total_amount)
+      .medium-9.large-8.columns.order-lines
+        %table.order-lines-table
+          %thead.order-lines-head
+            %tr
+              %td.text-center Book
+              %td.text-center Unit price
+              %td.text-center Quantity
+              %td.text-center Total price
+          - order.order_lines.each do |order_line|
+            %tr.order-line
+              %td
+                .title=link_to order_line.book.title, book_path(order_line.book), method: :get
+                .author= "By: #{order_line.book.author_name}"
+              %td.text-right= number_to_currency(order_line.unit_price)
+              %td.text-right= order_line.quantity
+              %td.text-right.total-price= number_to_currency(order_line.total_price)

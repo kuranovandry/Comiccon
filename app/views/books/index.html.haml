@@ -1,0 +1,21 @@
+.row
+  .small-4.medium-3.large-3.columns
+    = render partial: 'shared/categories_side_nav'
+  .small-8.medium-9.large-9.columns
+    .row
+      %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
+        = render @books
+    .row
+      .medium-4.large-4.columns
+        = form_tag books_path, method: :get do
+          .row.collapse.left
+            .small-5.columns
+              %label#per-page-label Books/page
+            .small-3.columns
+              = number_field_tag :per_page, params[:per_page].present? ? params[:per_page] : Book.per_page, min: 1, id: "per-page-input"
+            .small-4.columns
+              = submit_tag "Show", class: "postfix", id: "per-page-show-btn"
+      .medium-2.large-3.columns
+      .medium-6.large-5.columns
+        .row.right
+          = foundation_paginate @books

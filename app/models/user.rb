@@ -1,33 +1,27 @@
 class User < ActiveRecord::Base
+  FULL_NAME_MAX_LENGTH = 100
+  PASSWORD_MIN_LENGTH = 8
+  VALID_PHONE_REGEX = /\A\z|\A[+]?[ ]*\d+[- \d]*\z/ # Can start with '+', can only contain digits (at least 1), '-', ' ', can be empty
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  has_many :comments, dependent: :destroy
+  has_many :orders, dependent: :destroy
   
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  do_not_validate_attachment_file_type :avatar
+  # Include default devise modules. Others available are:
+  # :confirmable, :trackable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
 
-  rails_admin do
-    nestable_list true
-    list do
-      field :email
-      field :current_sign_in_at
-      field :sign_in_count
-      field :name
-      field :surname
-		end
+  validates :full_name, presence: true, length: { maximum: FULL_NAME_MAX_LENGTH }
+  validates :phone, format: { with: VALID_PHONE_REGEX }
+  validate :birthday_no_later_than_today
 
-		edit do
-			field :email
-			field :password
-			field :password_confirmation
-      field :name
-      field :surname
-      field :avatar
+  def commented_on_book?(book)
+    comments.exists?(book_id: book.id)
+  end
+
+  private
+    def birthday_no_later_than_today
+      errors.add(:birthday, "must be no later than today") if
+          self.birthday != nil && self.birthday > Date.today
     end
-  end
-
-  def full_name
-    "#{name} #{surname}"
-  end
-
 end

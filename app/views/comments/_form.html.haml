@@ -1,0 +1,13 @@
+= form_for [@book, @new_comment] do |f|
+  = f.hidden_field :book_id, value: @book.id
+  .row.rate-box
+    .small-1.columns
+      .rate-label Rating:
+    .small-1.columns.end
+      = f.select :rating, Comment::RATING_VALUES
+  .row.comment-box
+    .column
+      = f.text_area :content, placeholder: "Post a new comment.."
+  .row
+    .column
+      = f.submit "Post", class: "button postfix right", id: "post-comment-btn"

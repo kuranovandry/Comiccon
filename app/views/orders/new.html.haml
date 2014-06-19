@@ -1,0 +1,8 @@
+.row.confirm-order
+  .small-10.small-centered.medium-7.medium-centered.large-6.large-centered.column
+    %h3 Confirm order
+    = form_for @order, url: {action: :create} do |f|
+      .shipping-address
+        = f.label :shipping_address
+        = f.text_area :shipping_address, id: "shipping-address-input"
+      = f.submit "Confirm", class: "button small"

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Comiccon::Application.config.secret_key_base = 'c792537de5b32887dc1bd15c661f5dbbeb6f56f692faeeeca74ec816e9b92919e1322da732d8134d088f1e926855e1aa798648fcfe0b37c68456bf546a0f89d8'
+Comiccon::Application.config.secret_key_base = '32f6609c2109a549078999c248fe73d809bb4171851bf198a69ac2e90171396c13f3badd489756431f0ced4545318428021c55c35b77224235d102b827245a6f'

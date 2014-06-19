@@ -1,46 +1,48 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
-gem 'rails', '4.0.1'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.0'
 gem 'sqlite3'
-gem 'rails_admin'
-gem 'fullcalendar_engine'
+gem 'will_paginate', '3.0.4'
 gem 'devise'
-gem 'pry'
-gem 'paperclip'
-gem 'rails_admin_nestable'
-gem "rails_best_practices"
-gem "mailcatcher"
-gem 'bootstrap-sass'
-gem 'capistrano', '~> 2'
-gem 'capistrano-ext'
-# gem 'axlsx_rails'
-# gem 'google_drive'
-gem 'nokogiri'
-gem 'rvm-capistrano'
-gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
-gem 'rails_bootstrap_navbar'
+gem 'figaro'
+gem 'haml-rails'
+gem 'rails_admin'
+gem 'faker'
+gem "paperclip"
+gem 'aws-sdk'
+gem 'foundation-rails'
+gem 'foundation-will_paginate'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'turbolinks'
-gem 'slim'
-gem 'will_paginate'
+
+gem "letter_opener", :group => :development
+
+group :development, :test do
+  gem 'rspec-rails', '2.13.1'
+  gem 'debugger'
+end
+
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails', '4.2.1'
+  gem 'cucumber-rails', '1.4.0', :require => false
+  gem 'database_cleaner'
+  gem 'shoulda'
+  gem "email_spec"
+  gem 'simplecov', :require => false
+end
+
+group :production do
+  gem 'rails_12factor', '0.0.2'
+end 
 
 group :doc do
   gem 'sdoc', require: false
-end
-
-group :development, :test do
-  # gem 'byebug'
-  gem 'rspec-rails'
-  gem 'guard-rspec', require: false
-  gem 'factory_girl_rails'
-  gem 'capybara', '2.1.0'
-  gem 'faye-websocket', '0.4.7'
-  gem 'poltergeist', '~> 1.2'
 end

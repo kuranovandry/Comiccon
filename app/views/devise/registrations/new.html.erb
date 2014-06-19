@@ -1,59 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Organizor</title>
-  <%= stylesheet_link_tag    "home" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= csrf_meta_tag %>
-  <link rel="shortcut icon" type="image/x-icon" href="/images/icons/reportm.png">
- 
-  
-  <!--p class="notice"><%= notice %></p-->
-  <!--p class="alert"><%= alert %></p-->
-</head>
-  <body>
-  <script type="text/javascript">
-    $(document).ready(function(){
-    $('#fade').cycle();
-    });
-  </script>
-    <div id="fade">
-      <img src="/images/b1.jpg" class="theme"/>
-      <img src="/images/b2.jpg" class="theme"/>
-      <img src="/images/b3.jpg" class="theme"/>
-    </div>
-<div id="bg1">
-      <div id="login-box">
-<div class ="body ">
-	<ul class="white-text">
-		<h2>Sign up</h2>
+<div class="row">
+  <div class="small-10 small-centered medium-7 medium-centered large-6 large-centered columns">
+    <h2>Sign up</h2>
 
-		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-		  <%= devise_error_messages! %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
+      <div><%= f.label :full_name %><br />
+      <%= f.text_field :full_name, :autofocus => true %></div>
 
-		  <div><%= f.label :email %><br />
-		  <%= f.email_field :email, autofocus: true %></div>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email%></div>
 
-		  <div><%= f.label :password %><br />
-		    <%= f.password_field :password, autocomplete: "off" %></div>
+      <div><%= f.label :password %><br />
+      <%= f.password_field :password %></div>
 
-		  <div><%= f.label :password_confirmation %><br />
-		    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-		  
-		  <%= f.label :name %>:
-  				<%= f.text_field :name %>
-		  
-		  <%= f.label :surname %>:
-  				<%= f.text_field :surname %>
+      <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %></div>
 
-		  <div><%= f.submit "Sign up" %></div>
-		<% end %>
-	</ul>
+      <div><%= f.label :phone %><br />
+      <%= f.text_field :phone %></div>
+
+      <div><%= f.label :birthday %><br />
+      <%= f.date_field :birthday %></div>
+
+      <div><%= f.submit "Sign up", class: "button small" %></div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
-
-</div>
-</div>
-</body>
-</html>

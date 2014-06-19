@@ -4,4 +4,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 Comiccon::Application.load_tasks
-

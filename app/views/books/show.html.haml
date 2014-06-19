@@ -1,0 +1,39 @@
+.book-container
+  .row
+    .medium-3.large-3.columns
+      .book-image= image_tag @book.photo.url(:medium)
+    .medium-9.large-9.columns
+      %h3.book-title= @book.title
+      %h5.book-author= "by #{@book.author_name}"
+      .book-avg-rating= "Average rating: #{@book.average_rating}/#{Comment::RATING_VALUES.last} (#{@book.total_rating_count})"
+      %p.text-justify.book-description= @book.description
+      .row
+        .small-6.columns
+          .book-publisher= "Publisher: #{@book.publisher_name}"
+          .book-publisher= "Published date: #{@book.published_date}"
+        .small-6.columns
+          .row
+            .small-6.columns
+              %label.right.book-price= number_to_currency(@book.unit_price)
+            .small-6.columns
+              %span.has-tip{title: "Add to cart"}
+                = link_to image_tag(image_url('cart.png')), add_book_carts_path(book_id: @book.id),
+                          method: "post", id: "add-to-cart-btn"
+  .row
+    .column
+      %hr
+      - if user_signed_in? && !current_user.commented_on_book?(@book)
+        %h4.comment-title Add your comment
+        = render "comments/form"
+      - else
+        - if !user_signed_in?
+          .panel Add your comment by signing in.
+        - else
+          .panel You have rated and commented on this book.
+
+  .row
+    .column
+      %h4.comment-title= "Comments (#{@comments.count})"
+      %ul.no-bullet
+        = render @comments
+      = foundation_paginate @comments

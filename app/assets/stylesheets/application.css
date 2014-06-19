@@ -9,63 +9,203 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree 
- *= require fullcalendar_engine/application
+ *= require foundation_and_overrides
+
+ *= require_tree .
  */
-.content {
-    background-color: #eee;
-    padding: 20px;
-    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-    -webkit-border-radius: 0 0 6px 6px;
-    -moz-border-radius: 0 0 6px 6px;
-    border-radius: 0 0 6px 6px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-    box-shadow: 0 1px 2px rgba(0,0,0,.15);
-}
-td, th {
-	border-bottom: 1px solid grey;
-}
-th {
-	background-color: #cccccc;
+#per-page-show-btn {
+    height: 20px;
+    line-height: 1rem;
+    width: 50px;
+    font-size: 0.8rem
 }
 
-table{
-	border: 0px solid black;
-	margin: 0 10% 0 10%;
-	height: 25px;
-	width: 80%;
+#per-page-input {
+    height: 20px;
+    line-height: 1rem;
+    padding-top: 2px;
+    padding-bottom: 0;
+    text-align: right
 }
 
-.depot_form {
-  fieldset {
+#per-page-label {
+    padding-top: 2px;
+}
 
-    legend {
-      font-family: sans-serif;
-      padding: 0.2em 1em;
-    }
-  }
+#top-bar-title {
+    font-size: 2rem;
+    vertical-align: middle;
+    font-weight: bold;
+}
 
-  form {
-    label {
-      width: 5em;
-      float: left;
-      text-align: right;
-      padding-top: 0.2em;
-      margin-right: 0.1em;
-      display: block;
-    }
+#search-bar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 45px;
+}
 
-    select, textarea, input {
-      margin-left: 0.5em;
-    }
+.book-title {
+    color: steelblue;
+}
 
-    .submit {
-      margin-left: 4em;
-    }
+.book-author {
+    color: #d2784a;
+}
 
-    br {
-      display: none;
-    }
-  }
+.book-description {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.book-publisher {
+    padding-top: 5px;
+    font-style: italic
+}
+
+.book-avg-rating {
+    padding-top: 5px
+}
+
+.book-image {
+    display: block;
+    margin-top: 12px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.book-price {
+    color: #d2784a;
+    font-size: 25px;
+    margin-top: 5px
+}
+
+.book-price-thumb {
+    color: #d2784a;
+    font-size: 12px;
+    margin-top: 5px
+}
+
+.book-item-title, .book-item-author {
+    width: 140px;
+}
+
+.add-to-cart-btn {
+    padding: 0;
+}
+
+#comment_rating {
+    padding-top: 3px;
+    height: 25px
+}
+
+#comment_content {
+    height: 6rem
+}
+
+#post-comment-btn {
+    width: 80px
+}
+
+.rate-label {
+    padding-top: 5px;
+}
+
+.comment-title {
+    color: steelblue;
+    padding-bottom: 10px;
+}
+
+.comment-author {
+    color: #d2784a;
+}
+
+.comment-line-split {
+    color: #d3d3d3;
+}
+
+.comment-rating {
+    padding-top: 5px;
+    font-style: italic;
+}
+
+.comment-date {
+    color: darkgray;
+}
+
+.comment-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.cart-item-quantity {
+    width: 50px !important;
+    height: 30px !important;
+}
+
+.cart-item-cell {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#continue-shopping-btn {
+    width: 140px
+}
+
+#checkout-btn {
+    width: 80px
+}
+
+#total-amount-label {
+    color: #d2784a;
+    font-weight: bold;
+}
+
+#total-amount-value {
+    color: #d2784a;
+    font-size: 16px;
+}
+
+#cart-item-table {
+    width: 100%
+}
+
+#update-btn {
+    margin-top: 15px;
+    width: 80px
+}
+
+.shared-link {
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+#shipping-address-input {
+    height: 10rem
+}
+
+.order-lines-table {
+    width: 100%
+}
+
+.order-shipping-address {
+    color: steelblue;
+    font-size: 16px;
+}
+
+.order-total-amount-value {
+    color: #d2784a;
+    font-size: 14px;
+}
+
+.order-total-amount {
+    margin-top: 20px
+}
+
+.total-price {
+    color: #d2784a;
+}
+
+#user-name {
+    color: #d2784a;
 }

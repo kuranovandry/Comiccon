@@ -12,40 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
-//= require bootstrap
+//= require foundation
 //= require turbolinks
 //= require_tree .
-//= require fullcalendar_engine/application
 
-$(document).ready(function(){
-      $('body').on('click', '.close', function(){ 
-        $('.alert-success').hide();
-      });
-  });
-function showInstitution(obj){
-   if (obj.options[obj.selectedIndex].text == "Institution"){
-    $('.institution').fadeIn(1000);
-   }else{
-    $('.institution').fadeOut(1000);
-   }
-}
-
-function selectUpdate(itemId,urlTo,destSel){
-  if (itemId.length != 0){
-    $(destSel).fadeOut(1000);
-                $.ajax({
-                    url: urlTo,
-                    type: 'GET',
-                    dataType: "JSON",
-                    success: function( json ) {
-                        $(destSel).empty();
-                        $(destSel).append('<option value= selected="selected">--Choose--</option>');
-                        $.each(json, function(i,value) {                          
-                          $(destSel).append($('<option>').text(value.name).attr('value', value.id));
-                        });
-                    }
-                });
-    $(destSel).fadeIn(1000); 
-  }
-}
+$(function(){ $(document).foundation(); });

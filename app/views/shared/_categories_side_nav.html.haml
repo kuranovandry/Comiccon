@@ -1,0 +1,4 @@
+%ul.side-nav
+  - @categories.each do |category|
+    %li= link_to category[0], root_path if category[1].nil?
+    %li= link_to category[0], category_path(category[1]) if category[1].present?

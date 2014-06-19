@@ -1,12 +1,6 @@
 Comiccon::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-# config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
-# config.action_mailer.delivery_method = :smtp
-# config.action_mailer.smtp_settings = {
-#   :address => "127.0.0.1",
-#   :port    => 25,
-#   :domain  => 'yourdomain.com'
-# }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -80,13 +74,28 @@ Comiccon::Application.configure do
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
-# config.action_mailer.default_url_options = {:host => 'localhost:3000'}
-# config.action_mailer.delivery_method = :smtp
-# config.action_mailer.smtp_settings = {
-#   :address => "127.0.0.1",
-#   :port    => 25,
-#   :domain  => 'localhost:3000'
-# }
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  config.action_mailer.default_url_options = { :host => 'comiccon.herokuapp.com' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :authentication => :login,
+      :enable_starttls_auto => true,
+      :user_name => Figaro.env.gmail_username,
+      :password => Figaro.env.gmail_password
+  }
+
+  config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+          :bucket => ENV['S3_BUCKET_NAME'],
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      }
+  }
 end

@@ -1,0 +1,41 @@
+.row
+  .column
+    %h3 Shopping cart
+    - if @cart_items.blank?
+      No item
+    - else
+      %ul.button-group.right
+        %li= button_to "Continue shopping", books_path, method: :get, class: "button postfix", id: "continue-shopping-btn"
+        %li= button_to "Checkout", new_order_path, method: :get, class: "button postfix", id: "checkout-btn"
+      = form_tag update_cart_carts_path, method: :put do
+        %table#cart-item-table
+          %thead.cart-item-head
+            %tr
+              %td.text-center Title
+              %td.text-center Author
+              %td.text-center Unit price
+              %td.text-center Quantity
+              %td.text-center Total price
+              %td
+          - @cart_items.keys.each do |book_id|
+            - cart_item = @cart_items[book_id]
+            - book = Book.find_by_id(book_id)
+            %tr.cart-item-row
+              %td.cart-item-cell= link_to book.title, book_path(book), method: :get
+              %td.cart-item-cell= book.author_name
+              %td.cart-item-cell.text-right= number_to_currency(book.unit_price)
+              %td.cart-item-cell
+                = hidden_field_tag "book_ids[]", book_id
+                = number_field_tag "quantities[]", cart_item[:quantity], min: 1, class: "cart-item-quantity"
+              %td.cart-item-cell.text-right= number_to_currency(cart_item[:total_price])
+              %td.cart-item-cell.text-center
+                = link_to "Remove", remove_book_carts_path(book_id: book_id), method: :delete, class: "remove-book-link"
+          %tr
+            %td#total-amount-label Total amount:
+            %td{colspan: "4"}
+              #total-amount-value.text-right= number_to_currency(session[:cart][:total_amount])
+            %td
+        .row
+          .column
+            = submit_tag "Update", class: "button postfix right", id: "update-btn"
+
